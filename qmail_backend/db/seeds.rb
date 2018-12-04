@@ -14,10 +14,13 @@ Email.destroy_all
 @Ann = User.create!(first_name: "Ana", last_name: "Harris", password: "123456", email: "ana@gmail.com")
 @Paul = User.create!(first_name: "Paul", last_name: "Nick", password: "123456", email: "paul@gmail.com")
 
-@email = Email.create!(sender_id: 1, subject: "Testing", message: "Did you recieve this message?", status: "unread")
+@email = Email.create!(sender_id: @Joseph.id, subject: "Testing", message: "Did you recieve this message?", status: "unread")
 
-@email2 = Email.create!(sender_id: 1, subject: "Second Testing", message: "Can you recieve multiple messages?", status: "unread")
+@email2 = Email.create!(sender_id: @Joseph.id, subject: "Second Testing", message: "Can you recieve multiple messages?", status: "unread")
+
+@email3 = Email.create!(sender_id: @Ann.id, subject: "Third Testing", message: "Does this work", status: "unread")
 
 @userEmail1 = UserEmail.create!(recipient: @Ann, recipient_email: @email )
 @userEmail2 = UserEmail.create!(recipient: @Ann, recipient_email: @email2 )
+@userEmail3 = UserEmail.create!(recipient: @Joseph, recipient_email: @email3 )
 
