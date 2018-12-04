@@ -22,10 +22,18 @@ document.addEventListener('DOMContentLoaded', () => {
   loginFormDiv().style.display = "none";
   registerUserDiv().style.display = "initial"
 
-  let loginLink = document.getElementById('login-link');
+  // add event listener
+  let submitSignup = document.getElementById('submit_signup')
+  submitSignup.addEventListener('click', postUser)
 
+  let loginLink = document.getElementById('login-link');
   loginLink.addEventListener('click', loginUser )
 
+ }
+
+ function postUser() {
+  registerUserDiv().style.display = "none"
+   console.log('fetching....')
  }
 
  function loginUser() {
@@ -43,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (flag) {
         // Make User Class
         console.log('make class')
+        loginFormDiv().style.display = 'none';
       } else {
         showError()
       }
