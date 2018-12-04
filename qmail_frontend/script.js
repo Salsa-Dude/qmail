@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   let id = 1
   fetchAllEmails(id)
-}
+});
 
 
 function fetchAllEmails(id) {
