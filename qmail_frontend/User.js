@@ -10,6 +10,10 @@ class User {
 
     User.all.push(this)
   }
+
+  render() {
+    document.querySelector('#username').innerText = this.firstName
+  }
 }
 
 User.all = []
