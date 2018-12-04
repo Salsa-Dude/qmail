@@ -1,9 +1,9 @@
 class SentEmailsController < ApplicationController
-  def index 
+  def index
     render json: SentEmail.all
   end
 
-  def show 
+  def show
     render json: SentEmail.find(params[:id])
   end
 
@@ -21,10 +21,8 @@ class SentEmailsController < ApplicationController
   end
 
   private
-  
+
   def email_params
-    params.require(:email).permit(:sender_id, :subject, :message, :status)
+    params.require(:email).permit(:sender_id, :subject, :message, :status, :recipient_id)
   end
 end
-
-

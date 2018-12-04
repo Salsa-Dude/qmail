@@ -4,7 +4,7 @@ class CreateSentEmails < ActiveRecord::Migration[5.2]
       t.belongs_to :sender, class_name: "User"
       t.integer :recipient_id
       t.string :subject
-      t.string :message
+      t.text :message
       t.string :status
       t.timestamps
     end

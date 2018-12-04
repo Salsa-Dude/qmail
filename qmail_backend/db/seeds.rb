@@ -20,7 +20,12 @@ SentEmail.destroy_all
 
 @email3 = SentEmail.create!(sender_id: @Ann.id, recipient_id: @Joseph.id, subject: "Third Testing", message: "Does this work", status: "unread")
 
-@userEmail1 = ReceivedEmail.create!(recipient: @Ann, recipient_email: @email, sender_id: @Joseph.id )
-@userEmail2 = ReceivedEmail.create!(recipient: @Ann, recipient_email: @email2, sender_id: @Joseph.id )
-@userEmail3 = ReceivedEmail.create!(recipient: @Joseph, recipient_email: @email3, sender_id: @Ann.id )
+@email4 = SentEmail.create!(sender_id: @Paul.id, recipient_id: @Joseph.id, subject: "I'm a subject", message: "I'm just a dummy email data", status: "unread")
 
+@email5 = SentEmail.create!(sender_id: @Ann.id, recipient_id: @Paul.id, subject: "Test test test", message: "Hii test test test", status: "unread")
+
+@userEmail1 = ReceivedEmail.create!(recipient: @Ann, recipient_email: @email, sender_id: @Joseph.id, subject: @email.subject, message: @email.message )
+@userEmail2 = ReceivedEmail.create!(recipient: @Ann, recipient_email: @email2, sender_id: @Joseph.id, subject: @email2.subject, message: @email2.message )
+@userEmail3 = ReceivedEmail.create!(recipient: @Joseph, recipient_email: @email3, sender_id: @Ann.id, subject: @email3.subject, message: @email3.message )
+@userEmail4 = ReceivedEmail.create!(recipient: @Joseph, recipient_email: @email4, sender_id: @Paul.id, subject: @email4.subject, message: @email4.message )
+@userEmail5 = ReceivedEmail.create!(recipient: @Paul, recipient_email: @email5, sender_id: @Ann.id, subject: @email5.subject, message: @email5.message )

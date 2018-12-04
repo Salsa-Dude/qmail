@@ -16,6 +16,8 @@ ActiveRecord::Schema.define(version: 2018_12_04_161338) do
     t.integer "recipient_id"
     t.integer "recipient_email_id"
     t.integer "sender_id"
+    t.string "subject"
+    t.text "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["recipient_email_id"], name: "index_received_emails_on_recipient_email_id"
@@ -26,7 +28,7 @@ ActiveRecord::Schema.define(version: 2018_12_04_161338) do
     t.integer "sender_id"
     t.integer "recipient_id"
     t.string "subject"
-    t.string "message"
+    t.text "message"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
