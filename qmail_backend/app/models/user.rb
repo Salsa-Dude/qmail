@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  has_many :emails
-  has_many :emails, foreign_key: "sender_id"
-  has_many :user_emails, foreign_key: "recipient_id"
-  has_many :recipient_emails, through: :user_emails
+  has_many :sent_emails
+  has_many :sent_emails, foreign_key: "sender_id"
+  has_many :received_emails, foreign_key: "recipient_id"
+  has_many :recipient_emails, through: :received_emails
 end

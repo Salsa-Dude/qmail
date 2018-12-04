@@ -12,23 +12,25 @@
 
 ActiveRecord::Schema.define(version: 2018_12_04_161338) do
 
-  create_table "emails", force: :cascade do |t|
+  create_table "received_emails", force: :cascade do |t|
+    t.integer "recipient_id"
+    t.integer "recipient_email_id"
     t.integer "sender_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipient_email_id"], name: "index_received_emails_on_recipient_email_id"
+    t.index ["recipient_id"], name: "index_received_emails_on_recipient_id"
+  end
+
+  create_table "sent_emails", force: :cascade do |t|
+    t.integer "sender_id"
+    t.integer "recipient_id"
     t.string "subject"
     t.string "message"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["sender_id"], name: "index_emails_on_sender_id"
-  end
-
-  create_table "user_emails", force: :cascade do |t|
-    t.integer "recipient_id"
-    t.integer "recipient_email_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["recipient_email_id"], name: "index_user_emails_on_recipient_email_id"
-    t.index ["recipient_id"], name: "index_user_emails_on_recipient_id"
+    t.index ["sender_id"], name: "index_sent_emails_on_sender_id"
   end
 
   create_table "users", force: :cascade do |t|
