@@ -58,9 +58,10 @@ document.addEventListener('DOMContentLoaded', () => {
         return obj.email === emailValue
       })
       if (user) {
+        loginFormDiv().style.display = 'none';
         let newUser = new User(user.id, user.first_name, user.last_name, user.email, user.password, user.sent_emails, user.received_emails)
         newUser.render()
-        loginFormDiv().style.display = 'none';
+        data.forEach(obj => User.all.push(obj))
       } else {
         showError()
       }
