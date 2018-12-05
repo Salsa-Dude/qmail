@@ -10,6 +10,6 @@ function fetchAllEmails(id) {
     .then(res => res.json())
     .then(data => {
        let user = new User(data.id, data.first_name, data.last_name, data.email, data.password, data.sent_emails, data.received_emails)
-  user.render()
+       user.render()
     })
 }

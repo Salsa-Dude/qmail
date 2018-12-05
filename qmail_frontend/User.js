@@ -19,27 +19,40 @@ class User {
     User.all.push(this)
   }
 
+
   render() {
-    document.querySelector('#username').innerText = this.firstName
-    document.querySelector('#email-container').innerHTML = ""
-    document.querySelector('#inbox').addEventListener('click', (e) => this.renderInbox(e))
-    document.querySelector('#sent').addEventListener('click', (e) => this.renderSentEmails(e))
+    let menuDiv = document.querySelector('#menu')
+    let emailDiv = document.querySelector('#email-container')
+    let create = document.createElement('button')
+    let inbox = document.createElement('button')
+    let sent = document.createElement('button')
+    create.innerText = 'Create'
+    inbox.innerText = 'Inbox'
+    sent.innerText = 'Sent Emails'
+    // create.addEventListener('click', (e) => this.createEmail(e))
+    inbox.addEventListener('click', (e) => this.renderInbox(e))
+    sent.addEventListener('click', (e) => this.renderSentEmails(e))
+    menuDiv.append(create, inbox, sent)
   }
 
   renderInbox(e) {
     e.preventDefault()
+    let list = document.createElement('ul')
     document.querySelector('#email-container').innerHTML = ""
     this.receivedEmails.forEach( email => {
-      document.querySelector('#email-container').appendChild(email.renderREmail())
+      list.appendChild(email.renderREmail())
     })
+    document.querySelector('#email-container').appendChild(list)
   }
 
   renderSentEmails(e) {
     e.preventDefault()
+    let list = document.createElement('ul')
     document.querySelector('#email-container').innerHTML = ""
     this.sentEmails.forEach( email => {
-      document.querySelector('#email-container').appendChild(email.renderSEmail())
+      list.appendChild(email.renderSEmail())
     })
+    document.querySelector('#email-container').appendChild(list)
   }
 }
 

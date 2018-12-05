@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   registerUserDiv().style.display = 'none'
  })
 
+// login form input and fetching that user
  function getFormValues(e) {
    e.preventDefault();
    let emailInput = document.getElementById('email');
@@ -15,18 +16,15 @@ document.addEventListener('DOMContentLoaded', () => {
    let passwordValue = passwordInput.value
 
    fetchUser(emailValue, passwordValue)
-
  }
 
  function registerUser() {
   loginFormDiv().style.display = "none";
-  
+
   // Center form
   registerUserDiv().style.display = "block"
-  
   let column = document.getElementById('registerUserInner');
   column.classList.add('put-center')
-
 
   // add event listener
   let submitSignup = document.getElementById('submit_signup')
@@ -34,14 +32,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let loginLink = document.getElementById('login-link');
   loginLink.addEventListener('click', loginUser )
-
  }
 
+// create a new user
  function postUser() {
   registerUserDiv().style.display = "none"
    console.log('fetching.....')
  }
 
+// login
  function loginUser() {
    loginFormDiv().style.display = 'block'
    registerUserDiv().style.display = 'none'
@@ -50,16 +49,17 @@ document.addEventListener('DOMContentLoaded', () => {
   column.classList.add('put-center')
  }
 
+// find user from db when logging in
  function fetchUser(emailValue, passwordValue) {
   fetch(`http://localhost:3000/users`)
     .then(response => response.json())
     .then(data => {
-      let flag = data.find(user => {
-        return user.email === emailValue || user.password === passwordValue
+      let user = data.find(obj => {
+        return obj.email === emailValue
       })
-      if (flag) {
-        // Make User Class
-        console.log('make class')
+      if (user) {
+        let newUser = new User(user.id, user.first_name, user.last_name, user.email, user.password, user.sent_emails, user.received_emails)
+        newUser.render()
         loginFormDiv().style.display = 'none';
       } else {
         showError()
@@ -67,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
  }
 
+// error message
  function showError() {
   let div = document.createElement('div')
   div.innerText = "Wrong combination of Email/Password"
@@ -76,6 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
  }
 
+// get element
  function registerUserDiv() {
    return document.getElementById('registerUserDiv')
  }
