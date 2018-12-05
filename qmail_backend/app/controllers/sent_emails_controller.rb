@@ -23,6 +23,6 @@ class SentEmailsController < ApplicationController
   private
 
   def email_params
-    params.require(:email).permit(:sender_id, :subject, :message, :status, :recipient_id)
+    params.require(:sent_email).permit(:sender_id, :subject, :message, :status, :recipient_id)
   end
 end

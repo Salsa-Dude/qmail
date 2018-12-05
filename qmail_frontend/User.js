@@ -7,10 +7,7 @@ class User {
     this.password = password,
     this.sentEmails = [],
     this.receivedEmails = []
-    if (User.all.includes(this) === false) {
-      User.all.push(this)
-    }
-
+   
     sentEmails.forEach( email => {
       this.sentEmails.push(new SentEmail(email.id, this.id, email.recipient_id, email.subject, email.message, email.status))
     })
@@ -85,17 +82,36 @@ class User {
     let newToInput = document.getElementById('newTo');
     let newSubject = document.getElementById('newSubject');
     let newText = document.getElementById('newText');
+    let statusInput = document.getElementById('status')
 
     // Getting recipient_id 
     User.all.forEach(user => {
       let recipientEmail = newToInput.value;
       
       if (user.email === recipientEmail) {
+        
+        let data = {
+          sender_id: this.id,
+          subject: newSubject.value,
+          message: newText.value,
+          status: statusInput.value,
+          recipient_id: user.id
+        }
 
+        console.log(data)
+       
+        fetch('http://localhost:3000/sent_emails', {
+          method: "POST",
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        }).then(res => res.json())
+        .then(response => console.log('Success:', JSON.stringify(response)))
+        .catch(error => console.error('Error:', error));
       }
     })
-
-
   }
 }
 
