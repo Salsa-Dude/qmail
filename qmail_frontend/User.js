@@ -26,9 +26,10 @@ class User {
     let create = document.createElement('button')
     let inbox = document.createElement('button')
     let sent = document.createElement('button')
-    create.innerText = 'Create'
+    create.innerText = 'Compose'
     inbox.innerText = 'Inbox'
     sent.innerText = 'Sent Emails'
+    debugger
     // create.addEventListener('click', (e) => this.createEmail(e))
     inbox.addEventListener('click', (e) => this.renderInbox(e))
     sent.addEventListener('click', (e) => this.renderSentEmails(e))

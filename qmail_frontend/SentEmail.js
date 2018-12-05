@@ -1,5 +1,5 @@
 class SentEmail {
-  constructor(id, sender_id, recipient_id, subject, message, status) {
+  constructor(id, sender_id, recipient_id, subject, message, status='unread') {
     this.id = id
     this.sender_id = sender_id
     this.recipient_id = recipient_id
