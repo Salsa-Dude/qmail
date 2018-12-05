@@ -7,7 +7,11 @@ class User {
     this.password = password,
     this.sentEmails = [],
     this.receivedEmails = []
+<<<<<<< HEAD
    
+=======
+
+>>>>>>> 0b486c213555407524f91660e4bcb353b813df41
     sentEmails.forEach( email => {
       this.sentEmails.push(new SentEmail(email.id, this.id, email.recipient_id, email.subject, email.message, email.status))
     })
@@ -24,13 +28,11 @@ class User {
     let create = document.createElement('button')
     let inbox = document.createElement('button')
     let sent = document.createElement('button')
-   
-    
+
+
     create.innerText = 'Compose'
     inbox.innerText = 'Inbox'
     sent.innerText = 'Sent Emails'
-   
-    
     create.addEventListener('click', (e) => this.createEmail(e))
     inbox.addEventListener('click', (e) => this.renderInbox(e))
     sent.addEventListener('click', (e) => this.renderSentEmails(e))
@@ -60,10 +62,8 @@ class User {
   createEmail() {
     let modal = document.getElementById('myModal');
     modal.style.display = "block"
-    
     // DOM elements
     let messageBtn = document.getElementById('newMessageBtn');
-
     messageBtn.addEventListener('click', () => {
       this.checkUser();
     })
@@ -72,12 +72,10 @@ class User {
   checkUser() {
     console.log('checking user')
     console.log(User.all)
-
     // Getting sender input and adding this.id to value
     let senderId = this.id
     let senderHiddenInput = document.getElementById('senderId')
     senderHiddenInput.value = senderId;
-
     // Form DOM elements
     let newToInput = document.getElementById('newTo');
     let newSubject = document.getElementById('newSubject');
