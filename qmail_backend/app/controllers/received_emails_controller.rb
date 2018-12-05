@@ -25,7 +25,7 @@ class ReceivedEmailsController < ApplicationController
   private
 
   def email_params
-    params.require(:email).permit(:recipient_id, :recipient_email_id, :sender_id, :subject, :message)
+    params.require(:received_email).permit(:recipient_id, :recipient_email_id, :sender_id, :subject, :message)
   end
 
 end
