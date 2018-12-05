@@ -22,10 +22,18 @@ document.addEventListener('DOMContentLoaded', () => {
   loginFormDiv().style.display = "none";
   registerUserDiv().style.display = "initial"
 
-  let loginLink = document.getElementById('login-link');
+  // add event listener
+  let submitSignup = document.getElementById('submit_signup')
+  submitSignup.addEventListener('click', postUser)
 
+  let loginLink = document.getElementById('login-link');
   loginLink.addEventListener('click', loginUser )
 
+ }
+
+ function postUser() {
+  registerUserDiv().style.display = "none"
+   console.log('fetching....')
  }
 
  function loginUser() {
@@ -41,8 +49,9 @@ document.addEventListener('DOMContentLoaded', () => {
         return user.email === emailValue || user.password === passwordValue
       })
       if (flag) {
-        // let user = new User(data.id, data.first_name, data.last_name, data.email, data.password, data.sent_emails, data.received_emails)
-        // user.render()
+        // Make User Class
+        console.log('make class')
+        loginFormDiv().style.display = 'none';
       } else {
         showError()
       }
