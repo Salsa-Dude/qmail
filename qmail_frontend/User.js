@@ -58,8 +58,15 @@ class User {
   createEmail() {
     let modal = document.getElementById('myModal');
     modal.style.display = "block"
-    // let closeBtn = document.querySelector('.close');
-    // console.log(closeBtn);
+    let closeBtn = document.querySelector(".yo")
+
+    console.log(closeBtn)
+    
+    // Add event lister to close
+    closeBtn.addEventListener('click', () => {
+      modal.style.display = "none"
+    })
+
     // DOM elements
     let messageBtn = document.getElementById('newMessageBtn');
     messageBtn.addEventListener('click', () => {
@@ -124,8 +131,6 @@ class User {
           })
         .then(response => response)
         .catch(error => console.error('Error:', error));
-        
-        
       }
     })
   }
