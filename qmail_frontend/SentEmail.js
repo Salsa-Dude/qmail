@@ -20,25 +20,15 @@ class SentEmail {
 
   renderFullSEmail(e) {
     e.preventDefault()
-<<<<<<< HEAD
     let recipient = User.all.find(obj => obj.id === this.recipient_id)
     let sender = User.all.find(obj => obj.id === this.sender_id)
-=======
-    // finding recipient and sender objects
-    let recipient = User.all.find(obj => obj.id === this.recipient_id)
-    let sender = User.all.find(obj => obj.id === this.sender_id)
-    // DOM
->>>>>>> c4ef9d519c4c767cd025530cab947cf1b2a2a916
     document.querySelector('#email-container').innerHTML = ""
     // 'from' and 'to'
     let from = document.createElement('p')
     from.innerText = `From: ${sender.email}`
     let to = document.createElement('p')
     to.innerText = `To: ${recipient.email}`
-<<<<<<< HEAD
-=======
     // subject
->>>>>>> c4ef9d519c4c767cd025530cab947cf1b2a2a916
     let subject = document.createElement('p')
     subject.innerText = `Subject: ${this.subject}`
     // date
@@ -49,11 +39,7 @@ class SentEmail {
     // message
     let message = document.createElement('p')
     message.innerText = this.message
-<<<<<<< HEAD
-    document.querySelector('#email-container').append(from, to, subject, message)
-=======
     document.querySelector('#email-container').append(from, to, subject, date, message)
->>>>>>> c4ef9d519c4c767cd025530cab947cf1b2a2a916
   }
 
 

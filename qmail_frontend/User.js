@@ -58,16 +58,17 @@ class User {
   createEmail() {
     let modal = document.getElementById('myModal');
     modal.style.display = "block"
+    // let closeBtn = document.querySelector('.close');
+    // console.log(closeBtn);
     // DOM elements
     let messageBtn = document.getElementById('newMessageBtn');
     messageBtn.addEventListener('click', () => {
       this.checkUser();
-    })
+    }) 
   }
 
   checkUser() {
     console.log('checking user')
-    console.log(User.all)
     // Getting sender input and adding this.id to value
     let senderId = this.id
     let senderHiddenInput = document.getElementById('senderId')
@@ -83,7 +84,7 @@ class User {
       let recipientEmail = newToInput.value;
 
       if (user.email === recipientEmail) {
-
+        
         let data = {
           sender_id: this.id,
           subject: newSubject.value,
@@ -91,8 +92,6 @@ class User {
           status: statusInput.value,
           recipient_id: user.id
         }
-
-        console.log(data)
 
         fetch('http://localhost:3000/sent_emails', {
           method: "POST",
@@ -102,8 +101,31 @@ class User {
           },
           body: JSON.stringify(data)
         }).then(res => res.json())
-        .then(response => console.log('Success:', JSON.stringify(response)))
+          .then(data => {
+            let stringData = {
+              recipient_id: data.recipient_id,
+              recipient_email_id: data.id,
+              sender_id: data.sender_id,
+              subject: data.subject,
+              message: data.message,
+            }
+            console.log(data)
+            fetch('http://localhost:3000/received_emails', {
+              method: "POST",
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(stringData)
+            }).then(response => response.json())
+              .then(data => {
+                  console.log(data)
+            })
+          })
+        .then(response => response)
         .catch(error => console.error('Error:', error));
+        
+        
       }
     })
   }

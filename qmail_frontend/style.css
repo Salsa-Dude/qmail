@@ -61,4 +61,12 @@
   cursor: pointer;
 }
 
+.small-space {
+ height: 50px;
+}
+
+.loader {
+  display: none;
+}
+
 
