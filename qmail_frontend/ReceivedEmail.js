@@ -11,6 +11,7 @@ class ReceivedEmail {
     ReceivedEmail.all.push(this)
   }
 
+// renders all emails in a list
   renderREmail() {
     let li = document.createElement('li')
     li.innerText = this.subject
@@ -18,6 +19,7 @@ class ReceivedEmail {
     return li
   }
 
+// renders full email message on the entire page
   renderFullREmail(e) {
     e.preventDefault()
     // finding recipient and sender objects
@@ -43,6 +45,7 @@ class ReceivedEmail {
     message.innerText = this.message
     document.querySelector('#email-container').append(from, to, subject, date, message)
   }
+
 }
 
 ReceivedEmail.all = []

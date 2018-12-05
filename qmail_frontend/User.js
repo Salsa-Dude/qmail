@@ -90,7 +90,7 @@ class User {
           message: newText.value,
           status: statusInput.value,
           recipient_id: user.id
-        }
+
 
         console.log(data)
 
