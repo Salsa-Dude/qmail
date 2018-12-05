@@ -1,3 +1,3 @@
 class ReceivedEmailSerializer < ActiveModel::Serializer
-  attributes :id, :recipient_id, :recipient_email_id, :sender_id, :subject, :message
+  attributes :id, :recipient_id, :recipient_email_id, :sender_id, :subject, :message, :created_at
 end
