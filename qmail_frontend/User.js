@@ -7,7 +7,7 @@ class User {
     this.password = password,
     this.sentEmails = [],
     this.receivedEmails = []
-  
+
     sentEmails.forEach( email => {
       this.sentEmails.push(new SentEmail(email.id, this.id, email.recipient_id, email.subject, email.message, email.status, email.created_at))
     })
@@ -58,13 +58,13 @@ class User {
   createEmail() {
     let modal = document.getElementById('myModal');
     modal.style.display = "block"
-    // let closeBtn = document.querySelector('.close');
+    // let closeBtn = document.querySelector('#close-x');
     // console.log(closeBtn);
     // DOM elements
     let messageBtn = document.getElementById('newMessageBtn');
     messageBtn.addEventListener('click', () => {
       this.checkUser();
-    }) 
+    })
   }
 
   checkUser() {
@@ -84,14 +84,14 @@ class User {
       let recipientEmail = newToInput.value;
 
       if (user.email === recipientEmail) {
-        
+
         let data = {
           sender_id: this.id,
           subject: newSubject.value,
           message: newText.value,
           status: statusInput.value,
           recipient_id: user.id
-
+        }
 
         fetch('http://localhost:3000/sent_emails', {
           method: "POST",
@@ -124,8 +124,6 @@ class User {
           })
         .then(response => response)
         .catch(error => console.error('Error:', error));
-        
-        
       }
     })
   }

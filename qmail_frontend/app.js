@@ -11,25 +11,21 @@ document.addEventListener('DOMContentLoaded', () => {
    e.preventDefault();
    let emailInput = document.getElementById('email');
    let passwordInput = document.getElementById('password');
-
    let emailValue = emailInput.value
    let passwordValue = passwordInput.value
-
    fetchUser(emailValue, passwordValue)
  }
 
+// signup form
  function registerUser() {
   loginFormDiv().style.display = "none";
-
   // Center form
   registerUserDiv().style.display = "block"
   let column = document.getElementById('registerUserInner');
   column.classList.add('put-center')
-
   // add event listener
   let submitSignup = document.getElementById('submit_signup')
   submitSignup.addEventListener('click', postUser)
-
   let loginLink = document.getElementById('login-link');
   loginLink.addEventListener('click', loginUser )
  }
@@ -44,7 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
  function loginUser() {
    loginFormDiv().style.display = 'block'
    registerUserDiv().style.display = 'none'
-
   let column = document.getElementById('loginFormInner');
   column.classList.add('put-center')
  }
@@ -73,9 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let div = document.createElement('div')
   div.innerText = "Wrong combination of Email/Password"
   div.classList.add('error')
-
   loginForm().parentElement.insertBefore(div, loginForm())
-
  }
 
 // get element
