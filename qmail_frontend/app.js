@@ -5,17 +5,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   registerUserDiv().style.display = 'none'
  })
- 
+
  function getFormValues(e) {
    e.preventDefault();
    let emailInput = document.getElementById('email');
    let passwordInput = document.getElementById('password');
- 
+
    let emailValue = emailInput.value
    let passwordValue = passwordInput.value
- 
+
    fetchUser(emailValue, passwordValue)
-   
+
  }
 
  function registerUser() {
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let column = document.getElementById('loginFormInner');
   column.classList.add('put-center')
  }
- 
+
  function fetchUser(emailValue, passwordValue) {
   fetch(`http://localhost:3000/users`)
     .then(response => response.json())
@@ -83,14 +83,14 @@ document.addEventListener('DOMContentLoaded', () => {
  function loginFormDiv() {
    return document.getElementById('loginFormDiv');
  }
- 
+
  function loginForm() {
    return document.querySelector('.form')
- } 
+ }
 
  function submit_login() {
   return document.getElementById('submit_login')
-} 
+}
 
  function emailInput() {
    return document.getElementById('email')

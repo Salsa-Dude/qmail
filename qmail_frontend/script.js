@@ -9,7 +9,7 @@ function fetchAllEmails(id) {
   fetch(`http://localhost:3000/users/${id}`)
     .then(res => res.json())
     .then(data => {
-      let user = new User(data.id, data.first_name, data.last_name, data.email, data.password, data.sent_emails, data.received_emails)
-      user.render()
+       let user = new User(data.id, data.first_name, data.last_name, data.email, data.password, data.sent_emails, data.received_emails)
+  user.render()
     })
 }
