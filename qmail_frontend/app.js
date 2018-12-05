@@ -20,7 +20,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
  function registerUser() {
   loginFormDiv().style.display = "none";
-  registerUserDiv().style.display = "initial"
+  
+  // Center form
+  registerUserDiv().style.display = "block"
+  
+  let column = document.getElementById('registerUserInner');
+  column.classList.add('put-center')
+
 
   // add event listener
   let submitSignup = document.getElementById('submit_signup')
@@ -33,12 +39,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
  function postUser() {
   registerUserDiv().style.display = "none"
-   console.log('fetching....')
+   console.log('fetching.....')
  }
 
  function loginUser() {
-   loginFormDiv().style.display = 'initial'
+   loginFormDiv().style.display = 'block'
    registerUserDiv().style.display = 'none'
+
+  let column = document.getElementById('loginFormInner');
+  column.classList.add('put-center')
  }
  
  function fetchUser(emailValue, passwordValue) {
