@@ -13,10 +13,20 @@ class SentEmail {
   renderSEmail() {
     let li = document.createElement('li')
     li.innerText = this.subject
-    let p = document.createElement('p')
-    p.innerText = this.message
-    li.appendChild(p)
+    li.addEventListener('click', (e) => this.renderFullSEmail(e))
     return li
+  }
+
+  renderFullSEmail(e) {
+    e.preventDefault()
+    document.querySelector('#email-container').innerHTML = ""
+    let from = document.createElement('p')
+    from.innerText = `From: ${this.sender_id}`
+    let subject = document.createElement('p')
+    subject.innerText = `Subject: ${this.subject}`
+    let message = document.createElement('p')
+    message.innerText = this.message
+    document.querySelector('#email-container').append(from, subject, message)
   }
 }
 

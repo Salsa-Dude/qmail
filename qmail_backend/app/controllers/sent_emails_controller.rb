@@ -4,7 +4,10 @@ class SentEmailsController < ApplicationController
   end
 
   def show
-    render json: SentEmail.find(params[:id])
+    @email = SentEmail.find(params[:id])
+    # @recipient = findRecipientEmail
+    # @email["recipient"] = @recipient
+    render json: @email
   end
 
   def create
@@ -25,4 +28,5 @@ class SentEmailsController < ApplicationController
   def email_params
     params.require(:email).permit(:sender_id, :subject, :message, :status, :recipient_id)
   end
+
 end
