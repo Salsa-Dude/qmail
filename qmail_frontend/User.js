@@ -9,11 +9,11 @@ class User {
     this.receivedEmails = []
   
     sentEmails.forEach( email => {
-      this.sentEmails.push(new SentEmail(email.id, this.id, email.recipient_id, email.subject, email.message, email.status))
+      this.sentEmails.push(new SentEmail(email.id, this.id, email.recipient_id, email.subject, email.message, email.status, email.created_at))
     })
 
     receivedEmails.forEach( email => {
-      this.receivedEmails.push(new ReceivedEmail(email.id, this.id, email.recipient_email_id, email.sender_id, email.subject, email.message))
+      this.receivedEmails.push(new ReceivedEmail(email.id, this.id, email.recipient_email_id, email.sender_id, email.subject, email.message, email.created_at))
     })
   }
 
@@ -78,12 +78,12 @@ class User {
     let newText = document.getElementById('newText');
     let statusInput = document.getElementById('status')
 
-    // Getting recipient_id 
+    // Getting recipient_id
     User.all.forEach(user => {
       let recipientEmail = newToInput.value;
-      
+
       if (user.email === recipientEmail) {
-        
+
         let data = {
           sender_id: this.id,
           subject: newSubject.value,
@@ -93,7 +93,7 @@ class User {
         }
 
         console.log(data)
-       
+
         fetch('http://localhost:3000/sent_emails', {
           method: "POST",
           headers: {
