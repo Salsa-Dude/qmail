@@ -7,11 +7,7 @@ class User {
     this.password = password,
     this.sentEmails = [],
     this.receivedEmails = []
-<<<<<<< HEAD
-   
-=======
-
->>>>>>> 0b486c213555407524f91660e4bcb353b813df41
+  
     sentEmails.forEach( email => {
       this.sentEmails.push(new SentEmail(email.id, this.id, email.recipient_id, email.subject, email.message, email.status))
     })
