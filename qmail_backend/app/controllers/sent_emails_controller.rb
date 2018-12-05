@@ -5,8 +5,6 @@ class SentEmailsController < ApplicationController
 
   def show
     @email = SentEmail.find(params[:id])
-    # @recipient = findRecipientEmail
-    # @email["recipient"] = @recipient
     render json: @email
   end
 
