@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         loginFormDiv().style.display = 'none';
         let newUser = new User(user.id, user.first_name, user.last_name, user.email, user.password, user.sent_emails, user.received_emails)
         newUser.render()
-        User.all.push(data)
+        data.forEach(obj => User.all.push(obj))
       } else {
         showError()
       }

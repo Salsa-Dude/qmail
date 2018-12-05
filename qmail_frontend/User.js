@@ -7,7 +7,9 @@ class User {
     this.password = password,
     this.sentEmails = [],
     this.receivedEmails = []
-    // User.all.push(this)
+    if (User.all.includes(this) === false) {
+      User.all.push(this)
+    }
 
     sentEmails.forEach( email => {
       this.sentEmails.push(new SentEmail(email.id, this.id, email.recipient_id, email.subject, email.message, email.status))
@@ -72,18 +74,28 @@ class User {
 
   checkUser() {
     console.log('checking user')
+    console.log(User.all)
 
     // Getting sender input and adding this.id to value
     let senderId = this.id
     let senderHiddenInput = document.getElementById('senderId')
     senderHiddenInput.value = senderId;
-    
+
     // Form DOM elements
     let newToInput = document.getElementById('newTo');
     let newSubject = document.getElementById('newSubject');
     let newText = document.getElementById('newText');
 
-    console.log(User.all)
+    // Getting recipient_id 
+    User.all.forEach(user => {
+      let recipientEmail = newToInput.value;
+      
+      if (user.email === recipientEmail) {
+
+      }
+    })
+
+
   }
 }
 
