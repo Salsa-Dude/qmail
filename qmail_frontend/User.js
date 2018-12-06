@@ -32,17 +32,34 @@ class User {
 
   renderInbox(e) {
     e.preventDefault()
-    let list = document.createElement('ul')
+    // creating table elements
+    let table = document.createElement('table')
+    table.classList.add('ui', 'selectable', 'celled', 'table')
+    let thead = document.createElement('thead')
+    let tags = document.createElement('tr')
+    let from = document.createElement('th')
+    from.innerText = 'From:'
+    let subject = document.createElement('th')
+    subject.innerText = 'Subject:'
+    let date = document.createElement('th')
+    date.innerText = 'Date:'
+    let tbody = document.createElement('tbody')
+    // append
+    table.append(thead, tbody)
+    thead.appendChild(tags)
+    tags.append(from, subject, date)
     document.querySelector('#email-container').innerHTML = ""
+    // render and append emails
     this.receivedEmails.forEach( email => {
-      list.appendChild(email.renderREmail())
+      table.appendChild(email.renderREmail())
       let btn = document.createElement('button')
       btn.innerText = 'Delete'
       btn.id = `btn-inbox-${email.id}`
       btn.addEventListener('click', (e) => email.deleteEmail(e))
-      list.appendChild(btn)
+      table.appendChild(btn)
     })
-    document.querySelector('#email-container').appendChild(list)
+    // append all this to the email-container div
+    document.querySelector('#email-container').appendChild(table)
   }
 
   renderSentEmails(e) {
