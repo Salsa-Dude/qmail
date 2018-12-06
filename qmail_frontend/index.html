@@ -99,19 +99,26 @@
       <section id="sideMenu">
         <h2>Qmail</h2>
         <nav class="icon-div">
-          <a id='compose-btn'><i class="fas fa-home"></i>Compose</a>
-          <a id='inbox-btn'><i class="fas fa-paperclip"></i></i>Inbox</a>
-          <a id='sent-btn'><i class="fas fa-paperclip"></i></i>Sent</a>
+          <a class="icon-border" href="/users"><i class="fas fa-plus"></i></i>Compose</a>
+          <a href="/projects"><i class="fas fa-envelope"></i></i>Inbox</a>
+          <a href="/projects"><i class="fas fa-sign-in-alt"></i></i>Sent</a>
         </nav>
       </section>
       <header>
-          <div class="search-area">
-            <i class="fas fa-search"></i>
-          <input type="text" name="" value="">
+        <div class="search-area">
+          <!-- <i class="fas fa-search"></i>
+          <input type="text" name="" value=""> -->
+          <div class="ui search">
+            <div class="ui icon input">
+              <input class="prompt" type="text" placeholder="Emails...">
+              <i class="search icon"></i>
+            </div>
+            <div class="results"></div>
           </div>
-          <div class="user-area">
-
-          </div>
+        </div>
+        <div class="user-area">
+          <a href="">Logout
+        </div>
         </header>
     </div>
     <div id="email-container">
