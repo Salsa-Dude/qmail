@@ -26,9 +26,7 @@ class User {
     let sent = document.querySelector('#sent-btn')
 
     menuDiv.style.display = 'block'
-    create.innerText = 'Compose'
-    inbox.innerText = 'Inbox'
-    sent.innerText = 'Sent Emails'
+    
     create.addEventListener('click', (e) => this.createEmail(e))
     inbox.addEventListener('click', (e) => this.renderInbox(e))
     sent.addEventListener('click', (e) => this.renderSentEmails(e))
