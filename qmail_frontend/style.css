@@ -73,4 +73,64 @@
   display: none;
 }
 
+/******************************************** 
+  SIDE MENU
+********************************************/
+
+#sideMenu {
+  background: #00b5ad;
+  max-width: 250px;
+  width: 250px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+#sideMenu h2 {
+  text-align: center;
+  color: 	white;
+  font-size: 30px;
+  letter-spacing: 1px;
+  font-family: 'Fredoka One', cursive;
+}
+
+nav {
+  padding-top: 80px;
+}
+
+nav a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 28px 30px;
+  font-weight: 300;
+  font-size: 16px;
+  transition: all 0.3s ease-in-out;
+  font-family: 'Montserrat', sans-serif;
+}
+
+nav a:hover {
+  background: #27a768;
+  border-left: 5px solid #27a768;
+  padding: 20px 30px 15px 25px;
+}
+
+.fas, .fal {
+  color: white;
+  font-size: 1.7rem;
+  margin-right: 0.8rem;
+  display: inline-block;
+  width: 30px;
+  position: relative;
+  top: 2px;
+}
+
+/* .fas.active {
+  background: #184da3;
+  border-left: 5px solid #27a768;
+  padding: 15px 30px 15px 25px;
+} */
+  
+
+
 
