@@ -25,7 +25,7 @@ class User {
     let inbox = document.createElement('button')
     let sent = document.createElement('button')
 
-
+    menuDiv.style.display = 'block'
     create.innerText = 'Compose'
     inbox.innerText = 'Inbox'
     sent.innerText = 'Sent Emails'

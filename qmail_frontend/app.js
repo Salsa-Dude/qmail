@@ -2,7 +2,9 @@
 document.addEventListener('DOMContentLoaded', () => {
   submit_login().addEventListener('click', getFormValues)
   signupLink().addEventListener('click', registerUser)
-
+ 
+  let menuDiv = document.querySelector('#menu')
+  menuDiv.style.display = 'none';
   registerUserDiv().style.display = 'none'
  })
 
