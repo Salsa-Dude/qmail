@@ -58,23 +58,31 @@ class User {
   createEmail() {
     let modal = document.getElementById('myModal');
     modal.style.display = "block"
-    let closeBtn = document.querySelector(".yo")
-
-    console.log(closeBtn)
-    
-    // Add event lister to close
-    closeBtn.addEventListener('click', () => {
-      modal.style.display = "none"
-    })
-
+  
     // DOM elements
     let messageBtn = document.getElementById('newMessageBtn');
+    let newToInput = document.getElementById('newTo');
+    let newSubject = document.getElementById('newSubject');
+    let newText = document.getElementById('newText');
+    let xSpan = document.querySelector('.closeX');
+
+    xSpan.addEventListener('click', () => {
+      modal.style.display = "none"
+    })
+    
+    // MessageBtn validation
     messageBtn.addEventListener('click', () => {
-      this.checkUser();
+      if(newToInput.value === "" || newSubject === "" || newText === "" ) {
+        return;
+      } else {
+        this.checkUser();
+      }
     }) 
   }
 
   checkUser() {
+    let modal = document.getElementById('myModal');
+    modal.style.display = "none"
     console.log('checking user')
     // Getting sender input and adding this.id to value
     let senderId = this.id
@@ -91,6 +99,7 @@ class User {
       let recipientEmail = newToInput.value;
 
       if (user.email === recipientEmail) {
+        
         
         let data = {
           sender_id: this.id,
@@ -126,11 +135,14 @@ class User {
               body: JSON.stringify(stringData)
             }).then(response => response.json())
               .then(data => {
+                  console.log(User.all)
                   console.log(data)
             })
           })
         .then(response => response)
         .catch(error => console.error('Error:', error));
+      } else {
+        console.log('nope')
       }
     })
   }

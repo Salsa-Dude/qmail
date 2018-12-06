@@ -40,22 +40,26 @@
 .modal-content {
   background-color: #fefefe;
   margin: auto;
-  padding: 20px;
+  padding: 30px 30px 30px 30px;
   border: 1px solid #888;
   width: 50%;
   margin-top: 10%;
-  height: 400px;
+  height: 450px;
+  position: relative;
 }
 
-.close {
+.closeX {
   color: #aaaaaa;
-  float: right;
-  font-size: 28px;
+  font-size: 40px;
   font-weight: bold;
+  position: absolute;
+  right: 3%;
+  top: 2%;
+
 }
 
-.yo:hover,
-.yo:focus {
+.closeX:hover,
+.closeX:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;
