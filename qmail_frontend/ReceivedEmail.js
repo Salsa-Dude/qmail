@@ -15,6 +15,7 @@ class ReceivedEmail {
   renderREmail() {
     let li = document.createElement('li')
     li.innerText = this.subject
+    li.id = `rec-email-${this.id}`
     li.addEventListener('click', (e) => this.renderFullREmail(e))
     return li
   }
@@ -44,6 +45,17 @@ class ReceivedEmail {
     let message = document.createElement('p')
     message.innerText = this.message
     document.querySelector('#email-container').append(from, to, subject, date, message)
+  }
+
+  deleteEmail(e) {
+    e.preventDefault()
+    fetch(`http://localhost:3000/received_emails/${this.id}`, {
+      method: 'DELETE'
+    }).then(res => res.json())
+      .then(data => {
+        document.querySelector(`#rec-email-${this.id}`).remove()
+        document.querySelector(`#btn-inbox-${this.id}`).remove()
+      })
   }
 
 }

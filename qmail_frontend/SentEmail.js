@@ -14,6 +14,7 @@ class SentEmail {
   renderSEmail() {
     let li = document.createElement('li')
     li.innerText = this.subject
+    li.id = `sent-email-${this.id}`
     li.addEventListener('click', (e) => this.renderFullSEmail(e))
     return li
   }
@@ -42,6 +43,16 @@ class SentEmail {
     document.querySelector('#email-container').append(from, to, subject, date, message)
   }
 
+  deleteEmail(e) {
+    e.preventDefault()
+    fetch(`http://localhost:3000/sent_emails/${this.id}`, {
+      method: 'DELETE'
+    }).then(res => res.json())
+      .then(data => {
+        document.querySelector(`#sent-email-${this.id}`).remove()
+        document.querySelector(`#btn-sent-${this.id}`).remove()
+      })
+  }
 
 }
 

@@ -41,6 +41,11 @@ class User {
     document.querySelector('#email-container').innerHTML = ""
     this.receivedEmails.forEach( email => {
       list.appendChild(email.renderREmail())
+      let btn = document.createElement('button')
+      btn.innerText = 'Delete'
+      btn.id = `btn-inbox-${email.id}`
+      btn.addEventListener('click', (e) => email.deleteEmail(e))
+      list.appendChild(btn)
     })
     document.querySelector('#email-container').appendChild(list)
   }
@@ -51,6 +56,11 @@ class User {
     document.querySelector('#email-container').innerHTML = ""
     this.sentEmails.forEach( email => {
       list.appendChild(email.renderSEmail())
+      let btn = document.createElement('button')
+      btn.innerText = 'Delete'
+      btn.id = `btn-sent-${email.id}`
+      btn.addEventListener('click', (e) => email.deleteEmail(e))
+      list.appendChild(btn)
     })
     document.querySelector('#email-container').appendChild(list)
   }
