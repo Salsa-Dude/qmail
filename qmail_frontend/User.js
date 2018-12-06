@@ -21,9 +21,9 @@ class User {
   render() {
     let menuDiv = document.querySelector('#menu')
     let emailDiv = document.querySelector('#email-container')
-    let create = document.createElement('button')
-    let inbox = document.createElement('button')
-    let sent = document.createElement('button')
+    let compose = document.querySelector('#compose-btn')
+    let inbox = document.querySelector('#inbox-btn')
+    let sent = document.querySelector('#sent-btn')
 
     menuDiv.style.display = 'block'
     create.innerText = 'Compose'
@@ -32,7 +32,6 @@ class User {
     create.addEventListener('click', (e) => this.createEmail(e))
     inbox.addEventListener('click', (e) => this.renderInbox(e))
     sent.addEventListener('click', (e) => this.renderSentEmails(e))
-    menuDiv.append(create, inbox, sent)
   }
 
   renderInbox(e) {
@@ -68,7 +67,7 @@ class User {
   createEmail() {
     let modal = document.getElementById('myModal');
     modal.style.display = "block"
-  
+
     // DOM elements
     let messageBtn = document.getElementById('newMessageBtn');
     let newToInput = document.getElementById('newTo');
@@ -79,7 +78,7 @@ class User {
     xSpan.addEventListener('click', () => {
       modal.style.display = "none"
     })
-    
+
     // MessageBtn validation
     messageBtn.addEventListener('click', () => {
       if(newToInput.value === "" || newSubject === "" || newText === "" ) {
@@ -87,7 +86,7 @@ class User {
       } else {
         this.checkUser();
       }
-    }) 
+    })
   }
 
   checkUser() {
