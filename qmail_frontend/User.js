@@ -7,7 +7,7 @@ class User {
     this.password = password,
     this.sentEmails = [],
     this.receivedEmails = []
-  
+
     sentEmails.forEach( email => {
       this.sentEmails.push(new SentEmail(email.id, this.id, email.recipient_id, email.subject, email.message, email.status, email.created_at))
     })
@@ -41,6 +41,11 @@ class User {
     document.querySelector('#email-container').innerHTML = ""
     this.receivedEmails.forEach( email => {
       list.appendChild(email.renderREmail())
+      let btn = document.createElement('button')
+      btn.innerText = 'Delete'
+      btn.id = `btn-inbox-${email.id}`
+      btn.addEventListener('click', (e) => email.deleteEmail(e))
+      list.appendChild(btn)
     })
     document.querySelector('#email-container').appendChild(list)
   }
@@ -51,6 +56,11 @@ class User {
     document.querySelector('#email-container').innerHTML = ""
     this.sentEmails.forEach( email => {
       list.appendChild(email.renderSEmail())
+      let btn = document.createElement('button')
+      btn.innerText = 'Delete'
+      btn.id = `btn-sent-${email.id}`
+      btn.addEventListener('click', (e) => email.deleteEmail(e))
+      list.appendChild(btn)
     })
     document.querySelector('#email-container').appendChild(list)
   }
@@ -99,8 +109,6 @@ class User {
       let recipientEmail = newToInput.value;
 
       if (user.email === recipientEmail) {
-        
-        
         let data = {
           sender_id: this.id,
           subject: newSubject.value,
