@@ -13,40 +13,43 @@ class ReceivedEmail {
 
 // renders all emails in a list
   renderREmail() {
-    let li = document.createElement('li')
-    li.innerText = this.subject
-    li.id = `rec-email-${this.id}`
-    li.addEventListener('click', (e) => this.renderFullREmail(e))
-    return li
+    let tr = document.createElement('tr')
+    tr.id = `rec-email-${this.id}`
+    let email = document.createElement('td')
+    email.innerText = this.recipient().email
+    let subject = document.createElement('td')
+    subject.innerText = this.subject
+    let date = document.createElement('td')
+    date.innerText = this.formatDate()
+    tr.append(email, subject, date)
+    tr.addEventListener('click', (e) => this.renderFullREmail(e))
+    return tr
   }
 
 // renders full email message on the entire page
   renderFullREmail(e) {
     e.preventDefault()
-    // finding recipient and sender objects
-    let recipient = User.all.find(obj => obj.id === this.recipient_id)
-    let sender = User.all.find(obj => obj.id === this.sender_id)
-    // DOM
+    // clears the email-container div
     document.querySelector('#email-container').innerHTML = ""
     // 'from' and 'to'
     let from = document.createElement('p')
-    from.innerText = `From: ${sender.email}`
+    from.innerText = `From: ${this.sender().email}`
     let to = document.createElement('p')
-    to.innerText = `To: ${recipient.email}`
+    to.innerText = `To: ${this.recipient().email}`
     // subject
     let subject = document.createElement('p')
     subject.innerText = `Subject: ${this.subject}`
     // date
-    let dateP = document.createElement('p')
-    let date = new Date(Date.parse(this.date))
-    date = date.toLocaleDateString("en-US")
-    dateP.innerText = date
+    let date = document.createElement('p')
+    date.innerText = this.formatDate()
     // message
     let message = document.createElement('p')
     message.innerText = this.message
+    // append
     document.querySelector('#email-container').append(from, to, subject, date, message)
   }
 
+// deletes email from the DB and removes the DOM element
   deleteEmail(e) {
     e.preventDefault()
     fetch(`http://localhost:3000/received_emails/${this.id}`, {
@@ -58,6 +61,21 @@ class ReceivedEmail {
       })
   }
 
+// finds recipient for given email
+  recipient() {
+    return User.all.find(obj => obj.id === this.recipient_id)
+  }
+
+// finds sender for given email
+  sender() {
+    return User.all.find(obj => obj.id === this.sender_id)
+  }
+
+// formats date to MM/DD/YYYY
+  formatDate() {
+    let date = new Date(Date.parse(this.date))
+    return date.toLocaleDateString("en-US")
+  }
 }
 
 ReceivedEmail.all = []
