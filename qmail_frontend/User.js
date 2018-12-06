@@ -25,10 +25,6 @@ class User {
     let inbox = document.querySelector('#inbox-btn')
     let sent = document.querySelector('#sent-btn')
 
-
-    compose.innerText = 'Compose'
-    inbox.innerText = 'Inbox'
-    sent.innerText = 'Sent Emails'
     compose.addEventListener('click', (e) => this.createEmail(e))
     inbox.addEventListener('click', (e) => this.renderInbox(e))
     sent.addEventListener('click', (e) => this.renderSentEmails(e))
