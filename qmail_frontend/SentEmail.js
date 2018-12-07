@@ -11,24 +11,36 @@ class SentEmail {
     SentEmail.all.push(this)
   }
 
+// renders all emails in a list
   renderSEmail() {
-    let li = document.createElement('li')
-    li.innerText = this.subject
-    li.id = `sent-email-${this.id}`
-    li.addEventListener('click', (e) => this.renderFullSEmail(e))
-    return li
+    let tr = document.createElement('tr')
+    tr.id = `sent-email-${this.id}`
+    let email = document.createElement('td')
+    email.innerText = this.recipient().email
+    let subject = document.createElement('td')
+    subject.innerText = this.subject
+    let date = document.createElement('td')
+    date.innerText = this.formatDate()
+    let tdBtn = document.createElement('td')
+    let btn = document.createElement('a')
+    tdBtn.appendChild(btn)
+    btn.innerHTML = '<i class="fas fa-trash-alt"></i>'
+    btn.id = `btn-sent-${this.id}`
+    btn.addEventListener('click', (e) => this.deleteEmail(e))
+    tr.append(email, subject, date, tdBtn)
+    email.addEventListener('click', (e) => this.renderFullSEmail(e))
+    return tr
   }
 
+// renders full email message on the entire page
   renderFullSEmail(e) {
     e.preventDefault()
-    let recipient = User.all.find(obj => obj.id === this.recipient_id)
-    let sender = User.all.find(obj => obj.id === this.sender_id)
     document.querySelector('#email-container').innerHTML = ""
     // 'from' and 'to'
     let from = document.createElement('p')
-    from.innerText = `From: ${sender.email}`
+    from.innerText = `From: ${this.sender().email}`
     let to = document.createElement('p')
-    to.innerText = `To: ${recipient.email}`
+    to.innerText = `To: ${this.recipient().email}`
     // subject
     let subject = document.createElement('p')
     subject.innerText = `Subject: ${this.subject}`
@@ -43,6 +55,7 @@ class SentEmail {
     document.querySelector('#email-container').append(from, to, subject, date, message)
   }
 
+// deletes email from the DB and removes the DOM element
   deleteEmail(e) {
     e.preventDefault()
     fetch(`http://localhost:3000/sent_emails/${this.id}`, {
@@ -50,8 +63,23 @@ class SentEmail {
     }).then(res => res.json())
       .then(data => {
         document.querySelector(`#sent-email-${this.id}`).remove()
-        document.querySelector(`#btn-sent-${this.id}`).remove()
       })
+  }
+
+// finds recipient for given email
+  recipient() {
+    return User.all.find(obj => obj.id === this.recipient_id)
+  }
+
+// finds sender for given email
+  sender() {
+    return User.all.find(obj => obj.id === this.sender_id)
+  }
+
+// formats date to MM/DD/YYYY
+  formatDate() {
+    let date = new Date(Date.parse(this.date))
+    return date.toLocaleDateString("en-US")
   }
 
 }

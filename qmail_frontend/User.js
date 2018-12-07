@@ -18,6 +18,7 @@ class User {
   }
 
 
+// renders menu
   render() {
     let menuDiv = document.querySelector('#menu')
     menuDiv.style.display = 'block'
@@ -37,7 +38,8 @@ class User {
     e.preventDefault()
     // creating table elements
     let table = document.createElement('table')
-    table.classList.add('ui', 'selectable', 'celled', 'table')
+    table.id = 'inbox-table'
+    table.classList.add('ui', 'very', 'basic', 'left', 'aligned', 'table', 'selectable')
     let thead = document.createElement('thead')
     let tags = document.createElement('tr')
     let from = document.createElement('th')
@@ -46,20 +48,16 @@ class User {
     subject.innerText = 'Subject:'
     let date = document.createElement('th')
     date.innerText = 'Date:'
+    let dlt = document.createElement('th')
     let tbody = document.createElement('tbody')
     // append
     table.append(thead, tbody)
     thead.appendChild(tags)
-    tags.append(from, subject, date)
+    tags.append(from, subject, date, dlt)
     document.querySelector('#email-container').innerHTML = ""
     // render and append emails
     this.receivedEmails.forEach( email => {
-      table.appendChild(email.renderREmail())
-      let btn = document.createElement('button')
-      btn.innerText = 'Delete'
-      btn.id = `btn-inbox-${email.id}`
-      btn.addEventListener('click', (e) => email.deleteEmail(e))
-      table.appendChild(btn)
+      tbody.appendChild(email.renderREmail())
     })
     // append all this to the email-container div
     document.querySelector('#email-container').appendChild(table)
@@ -67,17 +65,31 @@ class User {
 
   renderSentEmails(e) {
     e.preventDefault()
-    let list = document.createElement('ul')
+    // creating elements
+    let table = document.createElement('table')
+    table.id = 'sent-table'
+    table.classList.add('ui', 'very', 'basic', 'left', 'aligned', 'table', 'selectable')
+    let thead = document.createElement('thead')
+    let tags = document.createElement('tr')
+    let to = document.createElement('th')
+    to.innerText = 'To:'
+    let subject = document.createElement('th')
+    subject.innerText = 'Subject:'
+    let date = document.createElement('th')
+    date.innerText = 'Date:'
+    let dlt = document.createElement('th')
+    let tbody = document.createElement('tbody')
+    // append
+    table.append(thead, tbody)
+    thead.appendChild(tags)
+    tags.append(to, subject, date, dlt)
     document.querySelector('#email-container').innerHTML = ""
+    // render and append email
     this.sentEmails.forEach( email => {
-      list.appendChild(email.renderSEmail())
-      let btn = document.createElement('button')
-      btn.innerText = 'Delete'
-      btn.id = `btn-sent-${email.id}`
-      btn.addEventListener('click', (e) => email.deleteEmail(e))
-      list.appendChild(btn)
+      tbody.appendChild(email.renderSEmail())
     })
-    document.querySelector('#email-container').appendChild(list)
+    // append all this to the email-container div
+    document.querySelector('#email-container').appendChild(table)
   }
 
   createEmail() {
@@ -134,7 +146,9 @@ class User {
           status: statusInput.value,
           recipient_id: user.id
         }
+        console.log(this.id);
 
+        // fetch for new SentEmail
         fetch('http://localhost:3000/sent_emails', {
           method: "POST",
           headers: {
@@ -151,7 +165,10 @@ class User {
               subject: data.subject,
               message: data.message,
             }
-            console.log(data)
+            let newEmail = new SentEmail(data.id, data.sender_id, data.recipient_id, data.subject, data.message, data.status, data.created_at)
+            this.sentEmails.push(newEmail)
+            
+            // fetch for new ReceivedEmail
             fetch('http://localhost:3000/received_emails', {
               method: "POST",
               headers: {

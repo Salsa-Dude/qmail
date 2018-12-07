@@ -16,13 +16,19 @@ class ReceivedEmail {
     let tr = document.createElement('tr')
     tr.id = `rec-email-${this.id}`
     let email = document.createElement('td')
-    email.innerText = this.recipient().email
+    email.innerText = this.sender().email
     let subject = document.createElement('td')
     subject.innerText = this.subject
     let date = document.createElement('td')
     date.innerText = this.formatDate()
-    tr.append(email, subject, date)
-    tr.addEventListener('click', (e) => this.renderFullREmail(e))
+    let tdBtn = document.createElement('td')
+    let btn = document.createElement('a')
+    tdBtn.appendChild(btn)
+    btn.innerHTML = '<i class="fas fa-trash-alt"></i>'
+    btn.id = `btn-inbox-${this.id}`
+    btn.addEventListener('click', (e) => this.deleteEmail(e))
+    tr.append(email, subject, date, tdBtn)
+    email.addEventListener('click', (e) => this.renderFullREmail(e))
     return tr
   }
 
@@ -57,7 +63,6 @@ class ReceivedEmail {
     }).then(res => res.json())
       .then(data => {
         document.querySelector(`#rec-email-${this.id}`).remove()
-        document.querySelector(`#btn-inbox-${this.id}`).remove()
       })
   }
 
