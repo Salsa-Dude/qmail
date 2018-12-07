@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   submit_login().addEventListener('click', getFormValues)
   signupLink().addEventListener('click', registerUser)
- 
+
   let menuDiv = document.querySelector('#menu')
   menuDiv.style.display = 'none';
   registerUserDiv().style.display = 'none'
@@ -35,13 +35,13 @@ document.addEventListener('DOMContentLoaded', () => {
 // create a new user
  function postUser() {
   registerUserDiv().style.display = "none"
-   console.log('fetching.....')
+  console.log('fetching.....')
  }
 
 // login
  function loginUser() {
-   loginFormDiv().style.display = 'block'
-   registerUserDiv().style.display = 'none'
+  loginFormDiv().style.display = 'block'
+  registerUserDiv().style.display = 'none'
   let column = document.getElementById('loginFormInner');
   column.classList.add('put-center')
  }
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.body.style.backgroundImage = "url('')";
   document.getElementById('right').style.display = 'none';
   document.querySelector('.logo-div').style.display = 'none';
-  
+
   fetch(`http://localhost:3000/users`)
     .then(response => response.json())
     .then(data => {
@@ -64,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let newUser = new User(user.id, user.first_name, user.last_name, user.email, user.password, user.sent_emails, user.received_emails)
         newUser.render()
         data.forEach(obj => User.all.push(obj))
+        getSearchForm().addEventListener('input', (e) => {findEmail(e, newUser)})
       } else {
         showError()
       }
@@ -77,6 +78,24 @@ document.addEventListener('DOMContentLoaded', () => {
   div.classList.add('error')
   loginForm().parentElement.insertBefore(div, loginForm())
  }
+
+ // search form
+function findEmail(e, newUser) {
+  e.preventDefault()
+  let input = e.target.value
+  // finds sent emails based on their subject and message, returns array of SentEmail objects, has to be rendered
+  newUser.sentEmails.filter(obj => {
+    return obj.subject.toLowerCase().includes(e.target.value.toLowerCase()) || obj.message.toLowerCase().includes(e.target.value.toLowerCase())
+  })
+  // finds received emails based on their subject and message, returns array of ReceivedEmail objects, has to be rendered to the page
+  newUser.receivedEmails.filter(obj => {
+    return obj.subject.toLowerCase().includes(e.target.value.toLowerCase()) || obj.message.toLowerCase().includes(e.target.value.toLowerCase())
+  })
+  // finds user based on their email, returns array of User objects, needs to be rendered to the page
+  User.all.filter(obj => {
+    return obj.email.toLowerCase().includes(e.target.value.toLowerCase())
+  })
+}
 
 // get element
  function registerUserDiv() {
@@ -105,4 +124,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function signupLink() {
   return document.getElementById('signup-link');
+}
+
+function getSearchForm() {
+  return document.getElementById('search-form')
 }
