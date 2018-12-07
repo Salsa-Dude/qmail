@@ -104,12 +104,23 @@ function findEmail(e, newUser) {
   table.classList.add('ui', 'very', 'basic', 'left', 'aligned', 'table', 'selectable')
   let tbody = document.createElement('tbody')
   // render
-  sent.forEach(email => tbody.appendChild(email.renderSEmail()))
-  received.forEach(email => tbody.appendChild(email.renderREmail()))
-  getEmailContainer().appendChild(tbody)
-  // append
+  sent.forEach(email => {
+    let mark = document.createElement('td')
+    mark.innerText = 'Sent'
+    let tr = email.renderSEmail()
+    tr.appendChild(mark)
+    tbody.appendChild(tr)
+  })
+  received.forEach(email => {
+    let mark = document.createElement('td')
+    mark.innerText = 'Inbox'
+    let tr = email.renderREmail()
+    tr.appendChild(mark)
+    tbody.appendChild(tr)
+  })  // append
   table.appendChild(tbody)
   getEmailContainer().appendChild(table)
+  debugger
   // clear the results when no input
   if (e.target.value === '') {
     getEmailContainer().innerHTML = ''
