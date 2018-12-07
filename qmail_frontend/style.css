@@ -78,9 +78,6 @@ body {
 }
 
 
-
-
-
 /********************************************
   MODAL
 ********************************************/
@@ -139,9 +136,10 @@ body {
   background: #00b5ad;
   max-width: 250px;
   width: 250px;
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
+
 }
 
 #sideMenu h2 {
