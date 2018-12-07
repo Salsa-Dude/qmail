@@ -16,7 +16,6 @@ class ReceivedEmail {
     let tr = document.createElement('tr')
     tr.id = `rec-email-${this.id}`
     let email = document.createElement('td')
-
     email.innerText = this.sender().email
     let subject = document.createElement('td')
     subject.innerText = this.subject

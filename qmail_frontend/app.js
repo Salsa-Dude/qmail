@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let newUser = new User(user.id, user.first_name, user.last_name, user.email, user.password, user.sent_emails, user.received_emails)
         data.forEach(obj => User.all.push(obj))
         newUser.render()
-        
+
         getSearchForm().addEventListener('input', (e) => {findEmail(e, newUser)})
       } else {
         showError()
@@ -95,13 +95,17 @@ function findEmail(e, newUser) {
   })
   // create elements
   let table = document.createElement('table')
-  table.id = 'inbox-table'
+  table.id = 'search-table'
   table.classList.add('ui', 'very', 'basic', 'left', 'aligned', 'table', 'selectable')
   let tbody = document.createElement('tbody')
   // render
   sent.forEach(email => tbody.appendChild(email.renderSEmail()))
   received.forEach(email => tbody.appendChild(email.renderREmail()))
   getEmailContainer().appendChild(tbody)
+  // append
+  table.appendChild(tbody)
+  getEmailContainer().appendChild(table)
+  // clear the results when no input
   if (e.target.value === '') {
     getEmailContainer().innerHTML = ''
   }
