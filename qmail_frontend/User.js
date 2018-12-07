@@ -26,21 +26,9 @@ class User {
     let compose = document.querySelector('#compose-btn')
     let inbox = document.querySelector('#inbox-btn')
     let sent = document.querySelector('#sent-btn')
-
-  //   (function(){
-  //     // all your code here
-  //     var foo = function() {};
-  //     window.onload = foo;
-  //     // ...
-  // })();
-
-    this.renderInbox()
-
     compose.addEventListener('click', (e) => this.createEmail(e))
     inbox.addEventListener('click', (e) => this.renderInbox())
     sent.addEventListener('click', (e) => this.renderSentEmails(e))
-
-    
   }
 
   renderInbox() {
@@ -102,23 +90,17 @@ class User {
   }
 
   createEmail() {
-    
     let modal = document.getElementById('myModal');
     modal.style.display = "block"
-
     // DOM elements
     let messageBtn = document.getElementById('newMessageBtn');
     let newToInput = document.getElementById('newTo');
     let newSubject = document.getElementById('newSubject');
     let newText = document.getElementById('newText');
     let xSpan = document.querySelector('.closeX');
-
-   
-
     xSpan.addEventListener('click', () => {
       modal.style.display = "none"
     })
-
     // MessageBtn validation
     messageBtn.addEventListener('click', () => {
       if(newToInput.value === "" || newSubject === "" || newText === "" ) {
@@ -142,7 +124,6 @@ class User {
     let newSubject = document.getElementById('newSubject');
     let newText = document.getElementById('newText');
     let statusInput = document.getElementById('status')
-
     // Getting recipient_id
     User.all.forEach(user => {
       let recipientEmail = newToInput.value;
@@ -156,7 +137,6 @@ class User {
           recipient_id: user.id
         }
         console.log(this.id);
-
         // fetch for new SentEmail
         fetch('http://localhost:3000/sent_emails', {
           method: "POST",
@@ -176,7 +156,6 @@ class User {
             }
             let newEmail = new SentEmail(data.id, data.sender_id, data.recipient_id, data.subject, data.message, data.status, data.created_at)
             this.sentEmails.push(newEmail)
-            
             // fetch for new ReceivedEmail
             fetch('http://localhost:3000/received_emails', {
               method: "POST",

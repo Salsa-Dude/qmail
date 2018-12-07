@@ -82,20 +82,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
  // search form
 function findEmail(e, newUser) {
+  getEmailContainer().innerHTML = ''
   e.preventDefault()
-  let input = e.target.value
-  // finds sent emails based on their subject and message, returns array of SentEmail objects, has to be rendered
-  newUser.sentEmails.filter(obj => {
-    return obj.subject.toLowerCase().includes(e.target.value.toLowerCase()) || obj.message.toLowerCase().includes(e.target.value.toLowerCase())
+  let input = e.target.value.toLowerCase()
+  // finds sent emails (subject & recipient)
+  let sent = newUser.sentEmails.filter(obj => {
+    return obj.subject.toLowerCase().includes(input) || obj.message.toLowerCase().includes(input) || obj.recipient().email.includes(input)
   })
-  // finds received emails based on their subject and message, returns array of ReceivedEmail objects, has to be rendered to the page
-  newUser.receivedEmails.filter(obj => {
-    return obj.subject.toLowerCase().includes(e.target.value.toLowerCase()) || obj.message.toLowerCase().includes(e.target.value.toLowerCase())
+  // finds received emails (subject & sender)
+  let received = newUser.receivedEmails.filter(obj => {
+    return obj.subject.toLowerCase().includes(input) || obj.message.toLowerCase().includes(input) || obj.sender().email.includes(input)
   })
-  // finds user based on their email, returns array of User objects, needs to be rendered to the page
-  User.all.filter(obj => {
-    return obj.email.toLowerCase().includes(e.target.value.toLowerCase())
-  })
+  // create elements
+  let table = document.createElement('table')
+  table.id = 'inbox-table'
+  table.classList.add('ui', 'very', 'basic', 'left', 'aligned', 'table', 'selectable')
+  let tbody = document.createElement('tbody')
+  // render
+  sent.forEach(email => tbody.appendChild(email.renderSEmail()))
+  received.forEach(email => tbody.appendChild(email.renderREmail()))
+  getEmailContainer().appendChild(tbody)
+  if (e.target.value === '') {
+    getEmailContainer().innerHTML = ''
+  }
 }
 
 // get element
@@ -129,4 +138,8 @@ function signupLink() {
 
 function getSearchForm() {
   return document.getElementById('search-form')
+}
+
+function getEmailContainer() {
+  return document.querySelector('#email-container')
 }
