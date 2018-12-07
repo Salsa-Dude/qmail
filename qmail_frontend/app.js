@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
    // body background display none
   document.body.style.backgroundImage = "url('')";
   document.getElementById('right').style.display = 'none';
+  document.querySelector('.logo-div').style.display = 'none';
   
   fetch(`http://localhost:3000/users`)
     .then(response => response.json())

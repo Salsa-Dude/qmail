@@ -28,8 +28,8 @@ body {
 #right {
   height: 200px;
   position: absolute;
-  top: 50%;
-  right: 0;
+  top: 60%;
+  right: 5%;
   z-index: 1;
 }
 
@@ -46,6 +46,32 @@ body {
 .content {
   color: white;
 }
+
+.logo-div {
+  text-align: right;
+}
+
+.logo-div ul {
+  margin-top: 20px;
+  list-style: none;
+  color: rgb(63, 61, 61);
+  margin-right: 5%;
+  letter-spacing: 1px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.logo-div ul li {
+  display: inline-block;
+  margin-right: 40px;
+  font-size: 15px;
+}
+
+#logo {
+  font-size: 24px;
+  padding-right: 40px;
+}
+
+
 
 
 
