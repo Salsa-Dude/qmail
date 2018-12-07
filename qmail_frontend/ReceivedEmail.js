@@ -41,6 +41,8 @@ class ReceivedEmail {
     let from = document.createElement('p')
     from.classList.add('ui', 'dividing', 'header')
     from.innerText = `From: ${this.sender().email}`
+    // create reply
+    from.innerHTML += `<i class="fas fa-reply"></i>`
     let to = document.createElement('p')
     to.classList.add('ui', 'dividing', 'header')
     to.innerText = `To: ${this.recipient().email}`
@@ -55,6 +57,7 @@ class ReceivedEmail {
     let message = document.createElement('p')
     message.classList.add('email-message')
     message.innerText = this.message
+   
     // append
     document.querySelector('#email-container').append(from, to, subject, message)
   }

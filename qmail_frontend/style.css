@@ -250,6 +250,7 @@ input[type="text"] {
   padding-top: 40px;
   /* height: 100%;
   weight: 70%; */
+  position: relative;
 }
 
 .ui.dividing.header {
@@ -271,6 +272,15 @@ input[type="text"] {
 .fa-trash-alt {
   font-size: 15px;
   color: black;
+}
+
+.fa-reply {
+ 
+  position: absolute;
+  right: 0;
+  top: 20%;
+  color:#00b5ad;
+  font-size: 18px;
 }
 
 .ui.basic.table {
