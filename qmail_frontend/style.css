@@ -46,7 +46,7 @@ body {
 
 .content {
   color: white;
-  font-family: 'Montserrat', sans-serif; 
+  font-family: 'Montserrat', sans-serif;
 }
 
 .logo-div {
@@ -139,7 +139,6 @@ body {
   position: fixed;
   top: 0;
   bottom: 0;
-  
 }
 
 #sideMenu h2 {
