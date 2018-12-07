@@ -27,15 +27,24 @@ class User {
     let inbox = document.querySelector('#inbox-btn')
     let sent = document.querySelector('#sent-btn')
 
+  //   (function(){
+  //     // all your code here
+  //     var foo = function() {};
+  //     window.onload = foo;
+  //     // ...
+  // })();
+
+    this.renderInbox()
+
     compose.addEventListener('click', (e) => this.createEmail(e))
-    inbox.addEventListener('click', (e) => this.renderInbox(e))
+    inbox.addEventListener('click', (e) => this.renderInbox())
     sent.addEventListener('click', (e) => this.renderSentEmails(e))
 
     
   }
 
-  renderInbox(e) {
-    e.preventDefault()
+  renderInbox() {
+  
     // creating table elements
     let table = document.createElement('table')
     table.id = 'inbox-table'

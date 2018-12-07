@@ -62,8 +62,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (user) {
         loginFormDiv().style.display = 'none';
         let newUser = new User(user.id, user.first_name, user.last_name, user.email, user.password, user.sent_emails, user.received_emails)
-        newUser.render()
         data.forEach(obj => User.all.push(obj))
+        newUser.render()
+        
         getSearchForm().addEventListener('input', (e) => {findEmail(e, newUser)})
       } else {
         showError()
