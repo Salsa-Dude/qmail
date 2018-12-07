@@ -9,15 +9,71 @@
   height: 100%;
 }
 
+#loginFormDiv {
+  margin-top: 5%;
+}
+
+body {
+  background: url('./SVG/bg.svg') no-repeat;
+  background-size: cover;
+  height: 70%;
+}
+
+#full {
+  position: absolute;
+  top: 20%;
+  height: 200px;
+}
+
+#right {
+  height: 200px;
+  position: absolute;
+  top: 60%;
+  right: 5%;
+  z-index: 1;
+}
+
 .column {
   max-width: 450px;
   margin-right: 10%;
 }
 
 .put-center {
-  margin-top: 180px;
+  margin-top: 100px;
   margin-left: 28%;
 }
+
+.content {
+  color: white;
+}
+
+.logo-div {
+  text-align: right;
+}
+
+.logo-div ul {
+  margin-top: 20px;
+  list-style: none;
+  color: rgb(63, 61, 61);
+  margin-right: 5%;
+  letter-spacing: 1px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.logo-div ul li {
+  display: inline-block;
+  margin-right: 40px;
+  font-size: 15px;
+}
+
+#logo {
+  font-size: 24px;
+  padding-right: 40px;
+}
+
+
+
+
 
 /********************************************
   MODAL
@@ -68,11 +124,6 @@
 .small-space {
  height: 50px;
 }
-
-.loader {
-  display: none;
-}
-
 
 /********************************************
   SIDE MENU
@@ -165,7 +216,6 @@ input[type="text"] {
   font-weight: 100; */
   font-size: 1.1rem;
   width: 70%;
-  transition: all 0.5s ease-in-out;
 }
 
 .user-area {

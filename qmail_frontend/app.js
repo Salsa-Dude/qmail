@@ -48,6 +48,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // find user from db when logging in
  function fetchUser(emailValue, passwordValue) {
+   // body background display none
+  document.body.style.backgroundImage = "url('')";
+  document.getElementById('right').style.display = 'none';
+  document.querySelector('.logo-div').style.display = 'none';
+  
   fetch(`http://localhost:3000/users`)
     .then(response => response.json())
     .then(data => {
