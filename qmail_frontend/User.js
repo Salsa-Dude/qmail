@@ -26,13 +26,14 @@ class User {
     let compose = document.querySelector('#compose-btn')
     let inbox = document.querySelector('#inbox-btn')
     let sent = document.querySelector('#sent-btn')
+    this.renderInbox()
     compose.addEventListener('click', (e) => this.createEmail(e))
     inbox.addEventListener('click', (e) => this.renderInbox())
     sent.addEventListener('click', (e) => this.renderSentEmails(e))
   }
 
   renderInbox() {
-  
+
     // creating table elements
     let table = document.createElement('table')
     table.id = 'inbox-table'
