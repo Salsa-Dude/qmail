@@ -11,8 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
 // login form input and fetching that user
  function getFormValues(e) {
    e.preventDefault();
-   let emailInput = document.getElementById('email');
-   let passwordInput = document.getElementById('password');
+   let emailInput = document.getElementById('login-email');
+   let passwordInput = document.getElementById('login-password');
    let emailValue = emailInput.value
    let passwordValue = passwordInput.value
    fetchUser(emailValue, passwordValue)
@@ -49,9 +49,10 @@ document.addEventListener('DOMContentLoaded', () => {
 // find user from db when logging in
  function fetchUser(emailValue, passwordValue) {
    // body background display none
-  document.body.style.backgroundImage = "url('')";
-  document.getElementById('right').style.display = 'none';
-  document.querySelector('.logo-div').style.display = 'none';
+  // document.body.style.backgroundImage = "url('')";
+  // document.getElementById('right').style.display = 'none';
+  // document.getElementById('full').style.display = 'none';
+  // document.querySelector('.logo-div').style.display = 'none';
 
   fetch(`http://localhost:3000/users`)
     .then(response => response.json())
@@ -61,6 +62,10 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       if (user) {
         loginFormDiv().style.display = 'none';
+        document.body.style.backgroundImage = "url('')";
+        document.getElementById('right').style.display = 'none';
+        document.getElementById('full').style.display = 'none';
+        document.querySelector('.logo-div').style.display = 'none';
         let newUser = new User(user.id, user.first_name, user.last_name, user.email, user.password, user.sent_emails, user.received_emails)
         data.forEach(obj => User.all.push(obj))
         newUser.render()
