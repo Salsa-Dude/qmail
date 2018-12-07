@@ -16,6 +16,10 @@ SentEmail.destroy_all
 @Lane = User.create!(first_name: "Lane", last_name: "Miller", password: "123456", email: "lane@qmail.com")
 @Jenni = User.create!(first_name: "Jenni", last_name: "Ingram", password: "123456", email: "jenni@qmail.com")
 @Iman = User.create!(first_name: "Iman", last_name: "Jawad", password: "123456", email: "iman@qmail.com")
+@Caroline = User.create!(first_name: 'Caroline', last_name: 'Lee', password: '123', email: 'caroline@qmail.com')
+@Mike = User.create!(first_name: 'Mike', last_name: 'Kim', password: '123', email: 'mike@qmail.com')
+@Robin = User.create!(first_name: 'Robin', last_name: 'Tram', password: '123', email: 'robin@qmail.com')
+@Marissa = User.create!(first_name: 'Marissa', last_name: 'McHugh', password: '123', email: 'marissa@qmail.com')
 
 @email = SentEmail.create!(sender_id: @Joseph.id, recipient_id: @Ann.id,  subject: "Hey", message: "Did you recieve this message?", status: "unread")
 
