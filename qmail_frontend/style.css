@@ -9,15 +9,45 @@
   height: 100%;
 }
 
+#loginFormDiv {
+  margin-top: 5%;
+}
+
+body {
+  background: url('./SVG/bg.svg') no-repeat;
+  background-size: cover;
+  height: 70%;
+}
+
+#full {
+  position: absolute;
+  top: 20%;
+  height: 200px;
+}
+
+#right {
+  height: 200px;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  z-index: 1;
+}
+
 .column {
   max-width: 450px;
   margin-right: 10%;
 }
 
 .put-center {
-  margin-top: 180px;
+  margin-top: 100px;
   margin-left: 28%;
 }
+
+.content {
+  color: white;
+}
+
+
 
 /********************************************
   MODAL
