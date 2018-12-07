@@ -250,13 +250,13 @@ input[type="text"] {
 #email-container {
   display: inline-block;
   margin-left: 300px;
+  padding-top: 40px;
   /* height: 100%;
   weight: 70%; */
 }
 
 .ui.dividing.header {
   width: 900px;
-  margin-top: 15px;
   font-weight: 300;
   font-size: 1.1em;
 }
@@ -278,5 +278,4 @@ input[type="text"] {
 
 .ui.basic.table {
   width: 900px;
-  margin-top: 15px;
 }
