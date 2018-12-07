@@ -38,21 +38,24 @@ class SentEmail {
     document.querySelector('#email-container').innerHTML = ""
     // 'from' and 'to'
     let from = document.createElement('p')
+    from.classList.add('ui', 'dividing', 'header')
     from.innerText = `From: ${this.sender().email}`
     let to = document.createElement('p')
+    to.classList.add('ui', 'dividing', 'header')
     to.innerText = `To: ${this.recipient().email}`
     // subject
     let subject = document.createElement('p')
+    subject.classList.add('ui', 'dividing', 'header')
     subject.innerText = `Subject: ${this.subject}`
     // date
-    let dateP = document.createElement('p')
-    let date = new Date(Date.parse(this.date))
-    date = date.toLocaleDateString("en-US")
-    dateP.innerText = date
+    // let dateP = document.createElement('p')
+    // dateP.classList.add('dividing', 'date-paragraph')
+    // dateP.innerText = this.formatDate()
     // message
     let message = document.createElement('p')
+    message.classList.add('email-message')
     message.innerText = this.message
-    document.querySelector('#email-container').append(from, to, subject, date, message)
+    document.querySelector('#email-container').append(from, to, subject, message)
   }
 
 // deletes email from the DB and removes the DOM element
